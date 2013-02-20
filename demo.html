@@ -1,0 +1,34 @@
+<html>
+  <head>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.8.1/build/cssreset/cssreset-min.css">
+		<style type="text/css">
+			body { font-size: 12px; font-family: arial,sans-serif;}
+			div#container { width: 1020px;  margin: 10px auto;  }
+		</style>
+		<link href="combobox.css"  rel="stylesheet" type="text/css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="combobox.js"></script>
+		<script>
+			$(function () {
+				$('#test').combobox({
+					optionEl: '#sample1',
+					width: $('#test').width(),
+					filter: 'contains'
+					
+				});
+			});			
+		</script>
+	</head>
+	<body>
+		<div id="container">
+		<select id="sample1">
+			<option value="0"> </option>
+			<option value="1">Apple</option>
+			<option value="2">Apple 2</option>
+			<option value="3">Orange</option>
+			<option value="4">Orange 2</option>
+		</select>
+		<input id="test" />
+		</div>
+	</body>
+</html>
