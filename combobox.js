@@ -3,7 +3,7 @@
  * 
  */
 (function($) {
-  $.fn.combobox = function (options) {
+	$.fn.combobox = function (options) {
 		
 		/**
 		 * This plugin supports 2 methods of input.
@@ -27,7 +27,7 @@
 			height:	'auto',
 			width:	null,	/* By default, the width of the combo box will be same as the width of the triggering element*/
 			onSelect: $.noop,
-			filter: 'starts-with' /*Filter options: contains, starts-with*/
+			filterType: 'starts-with' /*Filter options: contains, starts-with*/
 		};
 		
 		$.extend(o, options);
@@ -105,10 +105,10 @@
 				var $comboBox = $('#' + cWrapperID).show();
 				
 				var v = this.value.toUpperCase();
-				if (v.length) {
+				if (o.filterType && v.length) {
 					var $options = $comboBox.find('li');
 					var $hideOptions = $options.show().filter(function () {
-						switch (o.filter) { 
+						switch (o.filterType) { 
 							case 'starts-with': 
 								return $(this).text().toUpperCase().indexOf(v) != 0;
 							case 'contains':
