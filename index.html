@@ -9,6 +9,7 @@
 	<link type="text/css" rel="stylesheet" media="all" href="http://code.jquery.com/ui/1.8.24/themes/redmond/jquery-ui.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="css/prettify.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="css/styles.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/combobox.css" />
 	<style>
 	#main-content { min-height: 600px; overflow: hidden; }
 	
@@ -21,9 +22,18 @@
   	<script src="http://code.jquery.com/jquery.min.js"></script>
   	<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.min.js" type="text/javascript"></script>
 	<script src="js/global.js" type="text/javascript"></script>
-	<script src="js/fixed_table_rc.js" type="text/javascript"></script>
+	<script src="js/combobox.js" type="text/javascript"></script>
 	<script src="js/prettify.js" type="text/javascript"></script>
 
+	<script>
+		$(function () {
+			$('#fruits_combobox').combobox({
+				optionEl: '#fruits',
+				width: $('#fruits_combobox').width(),
+				filterType: 'contains'
+			});			
+		})
+	</script>
   </head>
   <body onload="prettyPrint()">
 		<div id="c_overlay"></div>
@@ -130,7 +140,7 @@
 				<h2>Overview</h2>
 				<p>
 					<a href="https://github.com/meetselva/combobox/blob/master/combobox.js">combobox</a> is a 
-					<a href="http://www.jquery.com/">jQuery</a> plug-in for ... It is stil under development and in beta stage, for more details read Known Issue section below.
+					<a href="http://www.jquery.com/">jQuery</a> plug-in for rendering custom combobox with filtering feature. It is stil under development and in beta stage, for more details read Known Issue section below.
 				</p>
 								
 				<h2>Why combobox?</h2>
@@ -149,6 +159,56 @@
 						Below is a simple example to demonstrate combobox plugin. 
 					</p>
 					<div class="dwrapper">
+						<select id="fruits">
+							<option value="0"> </option>
+							<option value="1">Apple</option>
+							<option value="2">Apricot</option>
+							<option value="3">Avocado</option>
+							<option value="4">Banana</option>
+							<option value="5">Bilberry</option>
+							<option value="6">Black Berry</option>
+							<option value="7">Black Currant</option>
+							<option value="8">Blackberry</option>
+							<option value="9">Blueberry</option>
+							<option value="10">Cantaloupe</option>
+							<option value="11">Cherry</option>
+							<option value="12">Clementine</option>
+							<option value="13">Damson</option>
+							<option value="14">Date</option>
+							<option value="15">Duran</option>
+							<option value="16">Eggplant</option>
+							<option value="17">Fig</option>
+							<option value="18">Gooseberry</option>
+							<option value="19">Grape</option>
+							<option value="20">Grapefruit</option>
+							<option value="21">Guava</option>
+							<option value="22">Honeydew</option>
+							<option value="23">Huckleberry</option>
+							<option value="24">Jambalaya</option>
+							<option value="25">Kiwi</option>
+							<option value="26">Kumquat</option>
+							<option value="27">Lemon</option>
+							<option value="28">Lime</option>
+							<option value="29">Mango</option>
+							<option value="30">Nectarine</option>
+							<option value="31">Orange</option>
+							<option value="32">Peach</option>
+							<option value="33">Pear</option>
+							<option value="34">Pineapple</option>
+							<option value="35">Plum</option>
+							<option value="36">Pomegranate</option>
+							<option value="37">Prune</option>
+							<option value="38">Raisin</option>
+							<option value="39">Ramanujan</option>
+							<option value="40">Raspberry</option>
+							<option value="41">Redcurrant</option>
+							<option value="42">Rhubarb</option>
+							<option value="43">Rock melon</option>
+							<option value="44">Strawberry</option>
+							<option value="45">Tangerine</option>
+							<option value="46">Watermelon</option>
+						</select>
+						<input id="fruits_combobox" />
 					</div>
 				</div>
 				<h2>Usage</h2>
@@ -157,7 +217,7 @@
 &lt;script type="text/javascript" src="https://raw.github.com/meetselva/combobox/master/combobox.js"&gt;&lt;/script&gt;</pre>
         		</p>
         		<p>
-        		Include the css for fixed table header column plugin,
+        		Include the css for combobox plugin,
 <pre class="prettyprint">&lt;link rel="stylesheet" type="text/css" href="combobox.css" /&gt;</pre>        		
         		</p>
         		<p>
