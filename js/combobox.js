@@ -239,25 +239,35 @@
 	
 	function activeSelect ($this, e) {
 		var $ul = $this.parent();
-		
+		//$this.find('li').css('color', 'black');
 		if (e.which == 40 ) { //pressed down arrow to jump to suggestion box			
 			var $next = $this.next();
-			if ($next.length) {
-				$this.removeClass('active');
+			
+			while ($next.length && $next.is(':hidden')) {
+				$next = $next.next();
+			}
+			
+			if ($next && $next.length) {
+				$this.removeClass('active');				
 				$next.addClass('active').focus();
-			} else { //depress down arrow from last record should take it to the first
+			} else { //depress down arrow from last record should take it to the first				
 				$this.removeClass('active');
-				$ul.find('li:first').addClass('active').focus();
+				$ul.find('li:visible:first').addClass('active').focus();
 			} 
 			
 		} else if (e.which == 38) { //up arrow
 			var $prev = $this.prev();
-			if ($prev.length) {
+
+			while ($prev.length && $prev.is(':hidden')) {
+				$prev = $prev.prev();
+			}
+			
+			if ($prev && $prev.length) {
 				$this.removeClass('active');
 				$prev.addClass('active').focus();
 			} else { //depress up arrow from last record should take it to the last
 				$this.removeClass('active');
-				$ul.find('li:last').addClass('active').focus();
+				$ul.find('li:visible:last').addClass('active').focus();
 			} 
 		}
 	}
