@@ -29,7 +29,7 @@
 		$(function () {
 			$('#fruits_combobox').combobox({
 				optionEl: '#fruits',
-				width: $('#fruits_combobox').width(),
+				width: $('#fruits_combobox').outerWidth() - 2,
 				filterType: 'contains'
 			});			
 		})
@@ -96,9 +96,21 @@
 					</div>
 				</div>
 				<div class="si_other_projects_content slide_content hidden">
-					<h4>1. attrchange</h4>
+					<h4>attrchange</h4>
 					<div>
 				        <p><a class="strong" href="https://github.com/meetselva/attrchange/blob/master/attrchange.js" target="_new" >attrchange</a> is a simple jQuery function to bind a listener function on attribute change of an element. The handler function is triggered when any attribute such as id, class, style, e.t.c is added or updated or modified to the element.</p>				        
+					</div>
+					<h4>fixed-table-rows-cols</h4>
+					<div>
+				        <p><a class="strong" href="https://github.com/meetselva/fixed-table-rows-cols/blob/master/fixed_table_rc.js" target="_new" >fixed-table-rows-cols</a> is a jQuery plug-in for converting a well formatted HTML table to a scrollable table with fixed table header and columns. This is a light weight plugin for rendering HTML table to an scrollable table the fixed header and configurable number of fixed columns.</p>				        
+					</div>
+					<h4>combobox</h4>
+					<div>
+				        <p><a class="strong" href="https://github.com/meetselva/combobox/blob/master/combobox.js" target="_new" >combox</a> is a jQuery plugin to render a user friendly editable drop down with filtering option.</p>				        
+					</div>
+					<h4>mutationobserver</h4>
+					<div>
+				        <p><a class="strong" href="https://github.com/meetselva/mutationobserver/blob/master/demo.html" target="_new" >mutationobserver</a> is a simple jQuery function to conveniently use mutation object.</p>				        
 					</div>
 				</div>
 				<div class="si_about_content slide_content hidden">
@@ -222,27 +234,16 @@
         		</p>
         		<p>
         		Now use the plugin like below,
-<!-- pre class="prettyprint">&lt;script type="text/javascript"&gt;
-   $(document).ready(function() {
-	$('#myTable').fxdHdrCol({
-		fixedCols    : 3,        /* 3 fixed columns */
-		width        : "100%",   /* set the width of the container (fixed or percentage)*/
-		height       : 500,      /* set the height of the container */
-		colModal: [              /* Optional: set the colmodal property for each tr/th or td/td*/
-			 { width: 40, align: 'center' },
-			 { width: 100, align: 'center' },
-			 { width: 200, align: 'left' },
-			 { width: 250, align: 'left' },
-			 { width: 100, align: 'left' },
-			 { width: 70, align: 'left' },
-			 { width: 100, align: 'left' },
-			 { width: 80, align: 'center' },
-			 { width: 90, align: 'left' },
-			 { width: 300, align: 'left' }
-		]
-	});
-   });
-&lt;/script&gt;</pre-->        		
+<pre class="prettyprint">&lt;script type="text/javascript"&gt;
+  $(document).ready(function() {
+	//  v-- textbox that will be replacing the drop down 
+	$('#fruits_combobox').combobox({
+		optionEl: '#fruits',    /* source options imported from this drop down selector*/
+		width: 200,             /* width of the combobox drop down */
+		filterType: 'contains'  /* Type of filter to apply on the options (starts-with, contains, or blank for no filtering) */
+	});   
+  });
+&lt;/script&gt;</pre>        		
         		</p>			
 			
 			</div>			

@@ -2,7 +2,7 @@ body { font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif; font-size: 80%
 
 ul li { list-style: none; }
 
-a { text-decoration: none; color: #2F5CA8 !important; text-shadow: none; font-weight: bold; transition: color 0.5s ease; transition: text-shadow 0.5s ease;-webkit-transition: color 0.5s ease; -webkit-transition: text-shadow 0.5s ease; -moz-transition: color 0.5s ease; -moz-transition: text-shadow 0.5s ease; -o-transition: color 0.5s ease; -o-transition: text-shadow 0.5s ease; -ms-transition: color 0.5s ease; -ms-transition: text-shadow 0.5s ease; }
+a { text-decoration: none; color: #2F5CA8; text-shadow: none; font-weight: bold; transition: color 0.5s ease; transition: text-shadow 0.5s ease;-webkit-transition: color 0.5s ease; -webkit-transition: text-shadow 0.5s ease; -moz-transition: color 0.5s ease; -moz-transition: text-shadow 0.5s ease; -o-transition: color 0.5s ease; -o-transition: text-shadow 0.5s ease; -ms-transition: color 0.5s ease; -ms-transition: text-shadow 0.5s ease; }
 a:hover { color: #2F5CA8; text-shadow: #0090ff 0px 0px 2px; }
 
 pre.prettyprint, code.prettyprint { width: 90%; color: #222; background-color: #EEEEEE; font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace; font-size: 0.9em; border-radius: 2px; -moz-border-radius: 2px; -webkit-border-radius: 2px; }
@@ -18,14 +18,21 @@ pre.prettyprint code.prettyprint { display: block; box-shadow: none; }
 
 #footer { background-color: white; border-top:	1px solid #c2c2c2; border-bottom: 3px solid #c2c2c2; padding: 7px 5px; }
 
-#slidebar { width: 98%; z-index: 1001; margin: 0 auto; margin-top: -2px; border-radius: 5px; text-align: right; overflow: hidden; padding: 0 10px; }
-#slide_items { padding-bottom: 5px; }
+#slidebar a:hover { text-shadow: none;}
+#slidebar { width: 98%; z-index: 1001; margin: 0 auto; margin-top: -25px; border-radius: 5px; text-align: right; overflow: hidden; padding: 0 10px; background-color: transparent; background-image: none; border: none; }
+#slide_items { padding-bottom: 5px; background-color: transparent; }
 #slide_items li { display: inline-block; padding: 1px 5px; margin: 1px 4px; font-weight: bold; }
 #slide_items li.active { border-width: 0px; border-bottom: 2px solid; }
-#slide_container { padding-bottom: 5px; }
+#slide_container { padding-bottom: 5px; color: black; }
 
 .slide_content { text-align: left; }
-.slide_content div { border-top: 1px solid; padding-top: 5px; }  
+.slide_content div { padding-top: 3px; border-top-width: 1px; border-top-style: solid; }
+
+
+.si_other_projects_content div /*:nth-child(even)*/ {background-color: #FAFAFA; padding: 5px; }
+/*.si_other_projects_content div:nth-child(odd) {background: #FFF; }*/
+
+.si_other_projects_content h4 { margin-top: 8px; color: #2A5A98; font-size: 1.2em; }
 
 li.themes-el { padding: 2px 3px; cursor: pointer; width: 85px; font-size: 0.9em; border:1px solid #c2c2c2; border-radius: 5px; margin: 2px; display: inline-block; }
 
