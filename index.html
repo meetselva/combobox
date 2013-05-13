@@ -155,15 +155,15 @@
 					<a href="http://www.jquery.com/">jQuery</a> plug-in for rendering custom combobox with filtering feature. It is stil under development and in beta stage, for more details read Known Issue section below.
 				</p>
 								
-				<h2>Why combobox?</h2>
-				<!-- p>
+				<!--h2>Why combobox?</h2>
+				< p>
 					A scrollable table is nothing but a simple HTML table with scrollbars. We can create a scrollable table by placing 
 					the html table inside a container div (see below table) and style the div with fixed height say <code class="prettyprint">height: 300px</code> and 
 					<code class="prettyprint">overflow:auto</code>. Now The table content is intact and We can use scroller to view the entire table. 
-				</p-->
+				</p>
 				<p>
 					add here
-				</p>
+				</p-->
 				<h2>Demo</h2>
 				<div class="example" id="example_d1">
 					<!--div class="e_title"></div -->
@@ -224,7 +224,7 @@
 					</div>
 				</div>
 				<h2>Usage</h2>
-        		<p>To use the function, include <a href="http://code.jquery.com/" target="_new" class="external">jQuery library</a> and <a href="https://github.com/meetselva/fixed-table-rows-cols/blob/master/fixed_table_rc.js">fixedTableRC</a> plugin.
+        		<p>To use the function, include <a href="http://code.jquery.com/" target="_new" class="external">jQuery library</a> and <a href="https://github.com/meetselva/combobox/blob/master/combobox.js">combobox</a> plugin.
 <pre class="prettyprint">&lt;script type="text/javascript" src="http://code.jquery.com/jquery.min.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="https://raw.github.com/meetselva/combobox/master/combobox.js"&gt;&lt;/script&gt;</pre>
         		</p>
@@ -240,7 +240,10 @@
 	$('#fruits_combobox').combobox({
 		optionEl: '#fruits',    /* source options imported from this drop down selector*/
 		width: 200,             /* width of the combobox drop down */
-		filterType: 'contains'  /* Type of filter to apply on the options (starts-with, contains, or blank for no filtering) */
+		filterType: 'contains',  /* Type of filter to apply on the options (starts-with, contains, or blank for no filtering) */
+		onSelect: function () {
+		   console.log('option selected');
+		}
 	});   
   });
 &lt;/script&gt;</pre>        		
