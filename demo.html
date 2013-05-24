@@ -5,30 +5,87 @@
 			body { font-size: 12px; font-family: arial,sans-serif;}
 			div#container { width: 1020px;  margin: 10px auto;  }
 		</style>
-		<link href="css/combobox.css"  rel="stylesheet" type="text/css" />
+		<link href="combobox.css"  rel="stylesheet" type="text/css" />
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script src="js/combobox.js"></script>
+		<script src="combobox.js"></script>
 		<script>
 			$(function () {
 				$('#test').combobox({
 					optionEl: '#sample1',
+					height: 100,
+					width: $('#test').width(),
+					filterType: null //no filter
+					
+				});
+				
+				$('#test1').combobox({
+					data: [{key: 'Item 1', value: '1'},
+					       {key: 'Item 2', value: '2'},
+					       {key: 'Item 3', value: '3'},
+					       {key: 'Item 4', value: '4'},
+					       {key: 'Item 5', value: '5'},
+					       {key: 'Item 6', value: '6'},
+					       {key: 'Item 7', value: '7'},
+					       {key: 'Item 8', value: '8'},
+					       {key: 'Item 9', value: '9'},
+						  ],
+					height: 100,
+					width: $('#test').width(),
+					filterType: null //no filter
+					
+				});
+				
+				$('#test2').combobox({
+					data: [{itemName: 'Item 1', itemValue: '1'},
+					       {itemName: 'Item 2', itemValue: '2'},
+					       {itemName: 'Item 3', itemValue: '3'},
+					       {itemName: 'Item 4', itemValue: '4'},
+					       {itemName: 'Item 5', itemValue: '5'},
+					       {itemName: 'Item 6', itemValue: '6'},
+					       {itemName: 'Item 7', itemValue: '7'},
+					       {itemName: 'Item 8', itemValue: '8'},
+					       {itemName: 'Item 9', itemValue: '9'},
+						  ],
+					listKey: 'itemName',
+					listValue: 'itemValue',
+					height: 100,
 					width: $('#test').width(),
 					filterType: null //no filter
 					
 				});
 			});			
 		</script>
+		<style>
+			p { margin: 10px; }
+		</style>
 	</head>
 	<body>
 		<div id="container">
-		<select id="sample1">
-			<option value="0"> </option>
-			<option value="1">Apple</option>
-			<option value="2">Apple 2</option>
-			<option value="3">Orange</option>
-			<option value="4">Orange 2</option>
-		</select>
-		<input id="test" />
+		<p>
+			Using Drop down
+			<select id="sample1">
+				<option value="0"> </option>
+				<option value="1">Item 1</option>
+				<option value="2">Item 2</option>
+				<option value="3">Item 3</option>
+				<option value="4">Item 4</option>
+				<option value="5">Item 5</option>
+				<option value="6">Item 6</option>
+				<option value="7">Item 7</option>
+				<option value="8">Item 8</option>
+				<option value="9">Item 9</option>
+				<option value="10">Item 10</option>
+			</select>
+			<input id="test" />
+		</p>
+		<p>
+			Using a data var (format 1)
+			<input id="test1" />
+		</p>
+		<p>
+			Using a data var (format 2)
+			<input id="test2" />
+		</p>
 		</div>
 	</body>
 </html>

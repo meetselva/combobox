@@ -22,8 +22,8 @@
 		var o = {
 			optionEl: null, /* Optional if data is not empty, else this is a mandatory option. */
 			data: [],       /* Optional if optionEl is not empty, else this is a mandatory option. */
-			listKey: null,  /* If data contains a list of object, then listKey is the property name*/
-			listValue: null,/* If data contains a list of object, then listValue is the property value*/
+			listKey: 'key',  /* If data contains a list of object, then listKey is the property name*/
+			listValue: 'value',/* If data contains a list of object, then listValue is the property value*/
 			height:	'auto',
 			width:	null,	/* By default, the width of the combo box will be same as the width of the triggering element*/
 			onSelect: $.noop,
@@ -128,7 +128,7 @@
 				var $li = $comboBox.find('li.active'); 
 				
 				if ($li.length) {
-					activeSelect($li, e);
+					activeSelect.call($li, e);
 				} else {
 					if (e.which == 40 ) { //pressed down arrow to jump to suggestion box
 						$comboBox.find('li:visible:first').addClass('active').focus();
@@ -176,11 +176,11 @@
 		});
 		
 		function buildCombobox () {
+			var cOptions = [];
 			//input method 1 - Build auto complete from a drop down
 			if (o.data.length == 0) {
 				var options = $(o.optionEl)[0].options;
 				
-				var cOptions = []; 
 				//build options
 				$.each (options, function (idx, el) {
 					cOptions.push( bTmpl.options
@@ -189,15 +189,25 @@
 										.replace(/{OPTION_TEXT}/g, el.text)    //added option text as the li's html
 										.replace(/{TITLE}/, (el.title)?('title ="' + el.title + '"'):'')); //added title for ellipsis
 				});
-				
-				return cOptions;
+								
+			} else { //use data element								
+				for (var i = 0; i < o.data.length; i++) {
+					cOptions.push( bTmpl.options
+							.replace(/{INDEX}/g, i) //adding index to know which option was selected
+							.replace(/{OPTION_VALUE}/g, o.data[i][o.listValue])  //added option value as data-value attribute
+							.replace(/{OPTION_TEXT}/g, o.data[i][o.listKey])    //added option text as the li's html
+							.replace(/{TITLE}/, o.data[i]['title']?('title ="' + o.data[i]['title'] + '"'):'')); //added title for ellipsis
+				}
 			}
+			
+			return cOptions;
 			
 		}
 		
 
 	};
 	
+	var suppressMouse = false; //supress mouse events when mouse is idle. Note: mouseenter is triggered even when mouse is untouched, but the page below the mouse is scrolled. 
 	$(document).click( function () {		
 		//Don't hide the combobox if the next click is inside the box or the same textbox
 		if (!$(document.activeElement).hasClass('cb-wrapper') &&
@@ -205,7 +215,7 @@
 				!$(document.activeElement).hasClass('cb-item') ) {
 			$('.cb-wrapper').hide();
 		}
-	}).delegate('.cb-wrapper li', 'click', function (){ /* Upgrade this to use .on as you update the jQuery js*/
+	}).on('click', '.cb-wrapper .cb-item', function (){ /* Upgrade this to use .on as you update the jQuery js*/
 		var $this = $(this);
 		var $parentEl = $this.parent();
 		var $el = $('#' + $parentEl[0].id.replace('-cb', ''));
@@ -221,43 +231,63 @@
 		e.preventDefault();
 		var $this = $(this);
 		
-		activeSelect($this, e);
+		activeSelect.call($this, e);
 		
 		if (e.which == 13) { //enter key
 			$(this).click();			
 			e.stopPropagation();
 		}
 	}).delegate('.cb-item', 'mouseenter', function (e) { //background hover on mouse enter
-		$(this).parent()           //traverse to parent element
-			.find('.active')    //find if there are any active element 
-			.removeClass('active');  //remove any such active class
-		
-		$(this).addClass('active').focus(); //Add class active to current LI
+		if (!suppressMouse) {
+			$(this).parent()           //traverse to parent element
+				.find('.active')    //find if there are any active element 
+				.removeClass('active');  //remove any such active class
+			
+			$(this).addClass('active').focus(); //Add class active to current LI
+		}
 	}).delegate('.cb-item', 'mouseleave', function (e) { //remove background hover on mouse leave
-		$(this).removeClass('active');  //remove class active
+		if (!suppressMouse) {
+			$(this).removeClass('active');  //remove class active
+		}
 	});
 	
-	function activeSelect ($this, e) {
-		var $ul = $this.parent();
+	function activeSelect (e) {
 		
+		if (!suppressMouse) {
+			$(document).one('mousemove', function () { //reset flag on mousemove
+				suppressMouse = false;
+			});
+		}
+		
+		suppressMouse  = true;		
+		var $ul = this.parent();
+		//this.find('li').css('color', 'black');
 		if (e.which == 40 ) { //pressed down arrow to jump to suggestion box			
-			var $next = $this.next();
-			if ($next.length) {
-				$this.removeClass('active');
+			var $next = this.next();
+			
+			while ($next.length && $next.is(':hidden')) {
+				$next = $next.next();
+			}
+			
+			this.removeClass('active');
+			if ($next && $next.length) {
 				$next.addClass('active').focus();
 			} else { //depress down arrow from last record should take it to the first
-				$this.removeClass('active');
-				$ul.find('li:first').addClass('active').focus();
+				$ul.find('li:visible:first').addClass('active').focus();
 			} 
 			
 		} else if (e.which == 38) { //up arrow
-			var $prev = $this.prev();
-			if ($prev.length) {
-				$this.removeClass('active');
+			var $prev = this.prev();
+
+			while ($prev.length && $prev.is(':hidden')) {
+				$prev = $prev.prev();
+			}
+
+			this.removeClass('active');
+			if ($prev && $prev.length) {
 				$prev.addClass('active').focus();
 			} else { //depress up arrow from last record should take it to the last
-				$this.removeClass('active');
-				$ul.find('li:last').addClass('active').focus();
+				$ul.find('li:visible:last').addClass('active').focus();
 			} 
 		}
 	}
