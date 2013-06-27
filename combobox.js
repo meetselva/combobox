@@ -44,6 +44,7 @@
 			
 			$this.focus(function (e) { //show auto complete options
 
+				var docHeight = $(document).height();
 				e.stopPropagation();
 				var $comboBox = $('#' + cWrapperID);
 				if ($comboBox.length) { //retrieve the list and update
@@ -79,12 +80,21 @@
 				
 				//always position before show to fix the resolution/resize issues
 				var pos = $this.position();
-				$comboBox.css({
+				var cbPos = {
 					left: pos.left,
-					top: pos.top + $(this).outerHeight() + 1,
 					width: o.width,
 					height: o.height
-				});
+				};
+				
+				//check if the option can be displayed bottom
+				if ((pos.top + $(this).outerHeight() + o.height) > docHeight) {
+					cbPos.top = pos.top - o.height - 2;
+				} else {
+					cbPos.top = pos.top + $(this).outerHeight();
+				}
+				
+				
+				$comboBox.css(cbPos);
 				
 				
 				$(this).keyup();
