@@ -1,3 +1,3 @@
-.cb-wrapper { position: absolute; border: 1px solid #c2c2c2; background-color: white; max-height: 200px; overflow: auto; }
+.cb-wrapper { position: absolute; border: 1px solid #c2c2c2; background-color: white; max-height: 200px; overflow: auto; padding: 0px; margin: 0px; }
 .cb-wrapper li { list-style: none; min-height: 11px; padding: 1px 2px; margin: 1px; border: 1px solid white;}
 .cb-wrapper li.active { border-color: grey; background-color: #c2c2c2; }
